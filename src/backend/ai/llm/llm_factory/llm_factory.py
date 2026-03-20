@@ -5,9 +5,9 @@ from typing import Literal
 import dotenv
 from langchain_core.language_models import BaseChatModel
 
-from backend.ai.llm.chat_models.llm_ollama import get_llm_chat_ollama
-from backend.ai.llm.chat_models.llm_open_ai import get_llm_chat_open_ai
-from shared.consts.const_config import PARENT_DIR
+from src.backend.ai.llm.chat_models.llm_ollama import get_llm_chat_ollama
+from src.backend.ai.llm.chat_models.llm_open_ai import get_llm_chat_open_ai
+from src.shared.consts.const_config import PARENT_DIR
 
 dotenv.load_dotenv(dotenv_path=Path(PARENT_DIR))
 

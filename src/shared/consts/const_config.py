@@ -9,7 +9,7 @@ from pathlib import Path
 
 file_sep_char = os.sep
 
-PARENT_DIR = Path(__file__).parents[2]
+PARENT_DIR = Path(__file__).parents[3]
 APP_NAME = PARENT_DIR.stem
 LOG_FOLDER = os.path.join(PARENT_DIR, 'Logs')
 LOG_FILE = APP_NAME + '_detailed.log'
@@ -24,6 +24,17 @@ class CONST_BLOB:
     BLOB_RUN_ID = "BLOB_RUN_ID"
     RUN_FILE = "BLOB_RUN_FILE"
     USER_SCENARIO = "USER_SCENARIO"
+
+
+class SYMBOLS:
+    DELTA_SYMBOL = "△"
+    RIGHT_ARROW = "➡️"
+    Left_ARROW = "⬅️"
+    INFO = "ℹ️"
+    CORRECT = "✅"
+    WRONG = "❌"
+    WARN = "⚠️"
+    CRITICAL = "❌❌"
 
 
 class ENV:
@@ -42,6 +53,5 @@ class ENV:
 
 
 class GRAPH_STATE_ENTRY_EXIT_NOTES:
-    DELTA_SYMBOL = "\u0394"
     ENTRY_LOG = "Current Crawler Graph State (Entry State)"
-    EXIT_LOG = f"Current Crawler Change ( {DELTA_SYMBOL} ) Graph State (Exit State)"
+    EXIT_LOG = f"Current Crawler Change ( {SYMBOLS.DELTA_SYMBOL} ) Graph State (Exit State)"
