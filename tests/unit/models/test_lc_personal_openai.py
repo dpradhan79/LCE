@@ -1,7 +1,7 @@
 import pytest
 from langchain_core.prompts import ChatPromptTemplate, SystemMessagePromptTemplate, HumanMessagePromptTemplate
 
-from backend.ai.llm.chat_models.llm_open_ai import get_llm_chat_open_ai
+from src.backend.ai.llm.chat_models.llm_open_ai import get_llm_chat_open_ai
 
 
 @pytest.mark.llm_open_ai_models

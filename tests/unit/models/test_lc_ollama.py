@@ -2,7 +2,7 @@ import pytest
 from langchain_core.language_models import BaseChatModel
 from langchain_core.prompts import ChatPromptTemplate, SystemMessagePromptTemplate, HumanMessagePromptTemplate
 
-from backend.ai.llm.chat_models.llm_ollama import get_llm_chat_ollama
+from src.backend.ai.llm.chat_models.llm_ollama import get_llm_chat_ollama
 
 
 async def invoke_llm_with_timeout(llm: BaseChatModel, message, timeout: int = 30):

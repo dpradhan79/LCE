@@ -3,7 +3,8 @@ import os
 from langchain_openai import ChatOpenAI
 from pydantic import SecretStr
 
-from shared.app_logger.app_logger import AppLogger
+from src.shared.app_logger.app_logger import AppLogger
+from src.shared.consts import const_config
 
 logger = AppLogger.get_create_logger()
 
@@ -27,9 +28,10 @@ def get_llm_chat_open_ai(model, base_url=None, api_key: SecretStr = None,
             **kwargs  # passthrough (e.g., model_kwargs={"response_format": {"type":"json_object"}})
 
         )
-        logger.info(f'ChatOpenAI Initialized')
+        logger.info(f'{const_config.SYMBOLS.INFO}ChatOpenAI Initialized')
         return llm
     except Exception as e:
-        logger.critical(f'ChatOpenAI Could Not Be Initialized, Error Type - {type(e).__name__}')
-        logger.critical(str(e))
+        logger.critical(
+            f'{const_config.SYMBOLS.CRITICAL}ChatOpenAI Could Not Be Initialized, Error Type - {type(e).__name__}')
+        logger.critical(f'{const_config.SYMBOLS.CRITICAL}{str(e)}')
         raise e

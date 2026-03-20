@@ -3,9 +3,9 @@ import os
 import pytest
 from langchain_core.prompts import ChatPromptTemplate, SystemMessagePromptTemplate, HumanMessagePromptTemplate
 
-from backend.ai.llm.chat_models.llm_open_ai import get_llm_chat_open_ai
-from shared.consts import const_config
-from shared.utils.utils import Utility
+from src.backend.ai.llm.chat_models.llm_open_ai import get_llm_chat_open_ai
+from src.shared.consts import const_config
+from src.shared.utils.utils import Utility
 
 
 @pytest.mark.llm_platform_provider_open_ai
