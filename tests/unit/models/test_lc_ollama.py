@@ -14,7 +14,7 @@ async def invoke_llm_with_timeout(llm: BaseChatModel, message, timeout: int = 30
         raise TimeoutError from e
 
 
-@pytest.mark.llm_models
+@pytest.mark.llm_ollama_models
 @pytest.mark.parametrize("model, reasoning",
                          [
                              ("gpt-oss:20b", True),

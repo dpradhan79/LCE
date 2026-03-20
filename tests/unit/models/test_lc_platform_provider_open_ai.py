@@ -8,7 +8,7 @@ from shared.consts import const_config
 from shared.utils.utils import Utility
 
 
-@pytest.mark.llm_models
+@pytest.mark.llm_platform_provider_open_ai
 @pytest.mark.parametrize("skip, model, options",
                          [
 
