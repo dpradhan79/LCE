@@ -7,7 +7,7 @@ from zoneinfo import ZoneInfo
 
 from pydantic import SecretStr
 
-from shared.consts.const_config import LOG_FOLDER
+from src.shared.consts.const_config import LOG_FOLDER
 
 
 class Utility:

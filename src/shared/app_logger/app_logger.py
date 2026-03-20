@@ -3,9 +3,9 @@ import sys
 from logging import Logger
 from typing import Dict, Literal
 
-from shared.consts import const_config
-from shared.consts.const_config import LOG_FILE
-from shared.utils.utils import Utility
+from src.shared.consts import const_config
+from src.shared.consts.const_config import LOG_FILE
+from src.shared.utils.utils import Utility
 
 
 class AppLogger:
@@ -30,7 +30,7 @@ class AppLogger:
         logger.setLevel(cls._dict_log_level[log_level.lower()])
         if not logger.handlers:
             # file handlder
-            
+
             fh = logging.FileHandler(log_run_folder / LOG_FILE, mode="w", encoding="utf-8")
 
             fmt = logging.Formatter(
@@ -52,4 +52,5 @@ class AppLogger:
             logger.addHandler(console)
             logger.propagate = False
         cls._dict_logger[app_name] = logger
+        logger.info(f'{const_config.SYMBOLS.INFO} Log Initialized @- {log_run_folder / LOG_FILE}')
         return logger
