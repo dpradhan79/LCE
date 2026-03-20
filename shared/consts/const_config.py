@@ -12,7 +12,7 @@ file_sep_char = os.sep
 PARENT_DIR = Path(__file__).parents[2]
 APP_NAME = PARENT_DIR.stem
 LOG_FOLDER = os.path.join(PARENT_DIR, 'Logs')
-LOG_FILE = os.path.join(LOG_FOLDER, APP_NAME + '_detailed.log')
+LOG_FILE = APP_NAME + '_detailed.log'
 PDF_FOLDER = os.path.join(PARENT_DIR, "shared_files")
 
 
@@ -24,6 +24,21 @@ class CONST_BLOB:
     BLOB_RUN_ID = "BLOB_RUN_ID"
     RUN_FILE = "BLOB_RUN_FILE"
     USER_SCENARIO = "USER_SCENARIO"
+
+
+class ENV:
+    class LLM:
+        LLM_PROVIDER = "LLM_PROVIDER"
+        LLM_MODEL = "LLM_MODEL"
+
+    class OPEN_AI:
+        OPENAI_API_KEY = "OPENAI_API_KEY"
+
+    class AZURE:
+        AZURE_OPENAI_ENDPOINT = "AZURE_OPENAI_ENDPOINT"
+        AZURE_OPENAI_API_VERSION = "AZURE_OPENAI_API_VERSION"
+        AZURE_LLM_MODEL = "AZURE_LLM_MODEL"
+        AZURE_OPENAI_API_KEY = "AZURE_OPENAI_API_KEY"
 
 
 class GRAPH_STATE_ENTRY_EXIT_NOTES:

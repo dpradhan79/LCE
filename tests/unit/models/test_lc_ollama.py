@@ -34,7 +34,7 @@ def test_chat_model_ollama(model, reasoning, request):
         chain = messages | llm
         response = chain.invoke({
             "user_prompt": "I am Debasish, Say hello and confirm you are responding your model reference such as I am model - llama3.1:8b or gpt-oss:20b or any other model"})
-        assert (len(response.content) > 0) is True, f'Ollama Model Does Not Respond'
+        assert (len(response.content) > 0) is True, f'Ollama Model - {model} Does Not Respond'
         print(f'\n test - {request.node.name} \n Response = \n {response.content}')
     elif model == "qwen3.5:0.8b":
         llm = get_llm_chat_ollama(model, **kwargs)
