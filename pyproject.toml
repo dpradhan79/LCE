@@ -28,3 +28,10 @@ where = ["src"]          # tells setuptools packages live under src/
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]     # lets pytest resolve imports from src/
+python_files      = ["test_*.py"]
+python_functions  = ["test_*"]
+markers = [
+    "llm_ollama_models: a marker to run llm_ollama_models",
+    "llm_open_ai_models: a marker to run llm_open_ai_models",
+    "llm_platform_provider_open_ai: a marker to run llm_platform_provider_open_ai"
+]

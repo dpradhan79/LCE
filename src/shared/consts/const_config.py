@@ -33,8 +33,9 @@ class SYMBOLS:
     INFO = "ℹ️"
     CORRECT = "✅"
     WRONG = "❌"
+    ERROR = "❌"
     WARN = "⚠️"
-    CRITICAL = "❌❌"
+    CRITICAL = "🔥"
 
 
 class ENV:

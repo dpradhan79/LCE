@@ -20,7 +20,7 @@ class AppLogger:
     }
 
     @classmethod
-    def get_create_logger(cls, app_name: str = const_config.APP_NAME, log_level: LOG_LEVEL = "Info") -> Logger:
+    def get_create_logger(cls, app_name: str = const_config.APP_NAME, log_level: LOG_LEVEL = "Debug") -> Logger:
         if app_name in cls._dict_logger:
             return cls._dict_logger[app_name]
         log_run_folder = Utility.get_run_id_folder_path(run_id=Utility.get_run_id())
