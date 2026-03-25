@@ -22,6 +22,7 @@ async def invoke_llm_with_timeout(llm: BaseChatModel, message, timeout: int = 30
                              ("qwen3.5:9b", True)
                          ]
                          )
+@pytest.mark.usefixtures("ollama_service")
 def test_chat_model_ollama(model, reasoning, request):
     kwargs = {"reasoning": reasoning, "temperature": 0.1, "timeout": 30}
     if model != "qwen3.5:0.8b":
