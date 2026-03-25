@@ -1,3 +1,4 @@
+import os
 import subprocess
 import time
 
@@ -5,11 +6,14 @@ import dotenv
 import psutil
 import pytest
 from filelock import FileLock
+dotenv.load_dotenv()
 
-
-@pytest.fixture(scope="session", autouse=True)
+@pytest.fixture(scope="session")
+@pytest.mark.skipif(condition=os.getenv("OLLAMA_AVAILABLE").lower() in ["false"], reason='Ollama Not Available')
 def ollama_service(tmp_path_factory, worker_id):
     dotenv.load_dotenv()
+    if os.getenv("OLLAMA_AVAILABLE").lower() in ["false"]:
+        pytest.skip()
     root_tmp = tmp_path_factory.getbasetemp().parent
     lock_file = root_tmp / "ollama.lock"
     pid_file = root_tmp / "ollama.pid"

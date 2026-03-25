@@ -33,11 +33,15 @@ class SYMBOLS:
     INFO = "ℹ️"
     CORRECT = "✅"
     WRONG = "❌"
+    ERROR = "❌"
     WARN = "⚠️"
-    CRITICAL = "❌❌"
+    CRITICAL = "🔥"
 
 
 class ENV:
+    class OLLAMA:
+        OLLAMA_AVAILABLE = "OLLAMA_AVAILABLE"
+
     class LLM:
         LLM_PROVIDER = "LLM_PROVIDER"
         LLM_MODEL = "LLM_MODEL"
