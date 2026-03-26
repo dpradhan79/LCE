@@ -25,5 +25,5 @@ class Reader(ABC):
             raise e
 
     @abstractmethod
-    def read(self) -> Union[dict[str, Any], str]:
+    def read(self) -> Union[dict[str, Any]]:
         raise NotImplementedError(f"Abstract method - {self.read.__qualname__} must be implemented in subclass")

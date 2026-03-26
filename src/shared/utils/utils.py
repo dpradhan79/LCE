@@ -70,3 +70,13 @@ class Utility:
             return dt
         except Exception as e:
             raise e
+
+    @classmethod
+    def find_rel_path(cls, start_path: str, end_path: str) -> Path | None:
+        start = Path(start_path)
+        end = Path(end_path)
+        files: list = start.rglob(end.name)
+        for file in files:
+            if file.as_posix().endswith(end.as_posix()):
+                return file
+        return None
