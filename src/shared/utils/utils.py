@@ -80,3 +80,14 @@ class Utility:
             if file.as_posix().endswith(end.as_posix()):
                 return file
         return None
+
+    @classmethod
+    def infer_title(cls, text: str) -> str | None:
+        """
+        Infer a page title using simple heuristics.
+        """
+        for line in text.splitlines():
+            line = line.strip()
+            if len(line) > 10 and line.isupper():
+                return line
+        return None

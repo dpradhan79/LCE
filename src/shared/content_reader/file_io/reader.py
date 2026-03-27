@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from os import PathLike
 from pathlib import Path
-from typing import Any, Union
+from typing import Any, Union, List
 
 from src.shared.app_logger.app_logger import AppLogger
 from src.shared.consts import const_config
@@ -25,5 +25,15 @@ class Reader(ABC):
             raise e
 
     @abstractmethod
-    def read(self) -> Union[dict[str, Any]]:
+    def read(self) -> Union[dict[str, Any], List[dict[str, Any]]]:
+
+        """
+                Must return a list of documents with structure:
+                {
+                    "id": str,
+                    "text": str,
+                    "metadata": dict
+                }
+                """
+
         raise NotImplementedError(f"Abstract method - {self.read.__qualname__} must be implemented in subclass")
