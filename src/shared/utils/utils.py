@@ -3,6 +3,7 @@ import re
 import shutil
 from datetime import datetime
 from pathlib import Path
+from typing import Tuple, List
 from zoneinfo import ZoneInfo
 
 from pydantic import SecretStr
@@ -91,3 +92,29 @@ class Utility:
             if len(line) > 10 and line.isupper():
                 return line
         return None
+
+    @classmethod
+    def normalize_headers_footers(cls,
+                                  text: str,
+                                  text_to_be_replaced: List[Tuple[str, str]],
+                                  text_to_be_popped: List[str]
+                                  ) -> str:
+        """
+        Replace OCR-noisy subject header/footer lines with canonical subject names
+        if the noisy word appears anywhere in the line.
+        """
+
+        lines = text.splitlines()
+        for noisy_word, correct_word in text_to_be_replaced:
+            if noisy_word.lower() in lines[0].lower():
+                lines[0] = lines[0].replace(noisy_word, correct_word)
+            if noisy_word.lower() in lines[-1].lower():
+                lines[-1] = lines[-1].replace(noisy_word, correct_word)
+
+        for noisy_word in text_to_be_popped:
+            if noisy_word.lower() in lines[0].lower():
+                lines.pop(0)
+            if noisy_word.lower() in lines[-1].lower():
+                lines.pop(-1)
+
+        return "\n".join(lines)

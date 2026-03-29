@@ -52,3 +52,15 @@ Before running OCR or scanned‑PDF workflows, ensure the following files exist:
 - `tools/tesseract/tessdata/eng.traineddata`
 
 If the above files are present, no further setup is needed. This approach mirrors **production‑grade document AI systems**, ensuring deterministic execution across developer machines, CI/CD pipelines, and locked‑down corporate environments while enabling OCR, vision‑based processing, and future RAG workflows.
+
+PDF Pipeline
+├─ pypdf / pdfplumber
+├─ pdf2image + pytesseract
+├─ (later) vision models
+└─ → produces PageDocuments (text + metadata)
+↓
+LangChain
+├─ Text splitter
+├─ Vector store
+├─ Retriever
+└─ LLM chains / agents

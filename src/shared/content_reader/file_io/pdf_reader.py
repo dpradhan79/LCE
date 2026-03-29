@@ -159,11 +159,12 @@ class PDFReader(Reader):
 
         total_pages = len(page_images)
         documents: List[Dict[str, Any]] = []
-
         for page_number, page in enumerate(page_images, start=1):
             text = pytesseract.image_to_string(page)
+
             if not text:
                 continue
+            
             width, height = page.size
             documents.append(
                 self._build_document(
@@ -176,4 +177,4 @@ class PDFReader(Reader):
                     rotation=0),
             )
 
-            return documents
+        return documents

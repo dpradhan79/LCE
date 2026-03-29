@@ -24,8 +24,10 @@ def test_pdf_multiple_files_pdf_plumber():
 
 
 def test_pdf_reader_single_file_with_pdf2image_pytesseract():
+    # pdf_folder_to_look_for = "docs"
+    # pdf_file_in_folder = "BGC.pdf"
     pdf_folder_to_look_for = "docs"
-    pdf_file_in_folder = "BGC.pdf"
+    pdf_file_in_folder = "maths/arithmetic_progression.pdf"
     result_pdf_path = Utility.find_rel_path(pdf_folder_to_look_for, pdf_file_in_folder)
     reader: Reader = PDFReader(result_pdf_path, pdf_processor="pdf2image;pytesseract")
     data = reader.read()
