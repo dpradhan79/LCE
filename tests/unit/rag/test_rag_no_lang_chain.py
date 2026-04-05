@@ -15,7 +15,7 @@ def test_in_memory_faiss():
     page_documents = data  # your PDFReader output
 
     # Step 2: Chunking
-    chunks = chunk_documents(page_documents)
+    chunks = chunk_documents(page_documents, chunk_size=500, overlap=50)
 
     # Step 3: Build FAISS index
     faiss_store = InMemoryFAISS()

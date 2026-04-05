@@ -68,8 +68,8 @@ def chunk_page_document(
     return chunks
 
 
-def chunk_documents(pages: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+def chunk_documents(pages: List[Dict[str, Any]], chunk_size: int = 500, overlap: int = 50) -> List[Dict[str, Any]]:
     all_chunks = []
     for page in pages:
-        all_chunks.extend(chunk_page_document(page))
+        all_chunks.extend(chunk_page_document(page, chunk_size, overlap))
     return all_chunks
