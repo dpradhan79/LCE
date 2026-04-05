@@ -15,7 +15,7 @@ supported_provider = Literal["ollama", "openai", "anthropic"]
 
 
 class SupportedLLMs:
-    llm_dict = {
+    _llm_dict = {
         "openai": get_llm_chat_open_ai,
         "ollama": get_llm_chat_ollama,
 
@@ -31,4 +31,4 @@ class SupportedLLMs:
         :param kwargs:
         :return: BaseChatModel
         """
-        return cls.llm_dict.get(provider)(model, **kwargs)
+        return cls._llm_dict.get(provider)(model, **kwargs)
