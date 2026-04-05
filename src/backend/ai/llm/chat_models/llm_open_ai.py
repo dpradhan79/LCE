@@ -9,8 +9,8 @@ from src.shared.consts import const_config
 logger = AppLogger.get_create_logger()
 
 
-def get_llm_chat_open_ai(model, base_url=None, api_key: SecretStr = None,
-                         **kwargs) -> ChatOpenAI | None:
+def _get_llm_chat_open_ai(model, base_url=None, api_key: SecretStr = None,
+                          **kwargs) -> ChatOpenAI | None:
     """
 
     :param model:
@@ -24,7 +24,7 @@ def get_llm_chat_open_ai(model, base_url=None, api_key: SecretStr = None,
         llm = ChatOpenAI(
             model=model,
             base_url=base_url,
-            api_key=api_key or SecretStr(os.getenv("OPENAI_API_KEY")),
+            api_key=api_key or SecretStr(os.getenv(const_config.ENV.OPEN_AI.OPENAI_API_KEY)),
             **kwargs  # passthrough (e.g., model_kwargs={"response_format": {"type":"json_object"}})
 
         )

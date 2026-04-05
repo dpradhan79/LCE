@@ -3,7 +3,7 @@ import os
 import pytest
 from langchain_core.prompts import ChatPromptTemplate, SystemMessagePromptTemplate, HumanMessagePromptTemplate
 
-from src.backend.ai.llm.chat_models.llm_open_ai import get_llm_chat_open_ai
+from src.backend.ai.llm.chat_models.llm_open_ai import _get_llm_chat_open_ai
 from src.shared.consts import const_config
 from src.shared.utils.utils import Utility
 
@@ -11,14 +11,14 @@ from src.shared.utils.utils import Utility
 @pytest.mark.llm_platform_provider_open_ai
 @pytest.mark.parametrize("skip, model, options, exception_expected",
                          [
-                            (False,
+                             (False,
                               "gpt-5-chat",
                               {
                                   "use_responses_api": False,
                                   # "reasoning": {"effort": "low", "summary": "auto"} #reasoning not supported by gpt-5-chat series
 
                               },
-                             False
+                              False
                               ),
 
                              (False,
@@ -30,25 +30,27 @@ from src.shared.utils.utils import Utility
                               },
                               False
                               ),
-                            (False,
+                             (False,
                               "gpt-5.4-mini",
                               {
                                   "use_responses_api": True,
                                   # follows responses API leading multiple blocks in LLM O/P content for each type
-                                  "reasoning": {"effort": "low", "summary": "auto"} #reasoning not supported by gpt-4o series
+                                  "reasoning": {"effort": "low", "summary": "auto"}
+                                  # reasoning not supported by gpt-4o series
 
                               },
-                             False
+                              False
                               ),
-                            (False,
+                             (False,
                               "gpt-5.4-mini",
                               {
                                   "use_responses_api": False,
                                   # follows responses API leading multiple blocks in LLM O/P content for each type
-                                  "reasoning": {"effort": "low", "summary": "auto"} #reasoning not supported by gpt-4o series
+                                  "reasoning": {"effort": "low", "summary": "auto"}
+                                  # reasoning not supported by gpt-4o series
 
                               },
-                             True
+                              True
                               )
 
                          ]
@@ -56,12 +58,12 @@ from src.shared.utils.utils import Utility
 def test_chat_model_azure_open_ai(skip, model, options, exception_expected):
     if skip:
         pytest.skip(reason="Skipping Test As Marked")
-    llm = get_llm_chat_open_ai(model, base_url=os.getenv(const_config.ENV.AZURE.AZURE_OPENAI_ENDPOINT),
-                               api_key=Utility.get_encrypted_key(
-                                   os.getenv(const_config.ENV.AZURE.AZURE_OPENAI_API_KEY)),
-                               **options
+    llm = _get_llm_chat_open_ai(model, base_url=os.getenv(const_config.ENV.AZURE.AZURE_OPENAI_ENDPOINT),
+                                api_key=Utility.get_encrypted_key(
+                                    os.getenv(const_config.ENV.AZURE.AZURE_OPENAI_API_KEY)),
+                                **options
 
-                               )
+                                )
     assert llm is not None
     messages = ChatPromptTemplate.from_messages(
         [SystemMessagePromptTemplate.from_template(template="You Are Helpful Assistant",
@@ -122,5 +124,3 @@ def test_chat_model_azure_open_ai(skip, model, options, exception_expected):
                         print(f'{idx} - Reasoning = {s.get("text")}')
                 elif block["type"] == "text":
                     print(f'Response = {block["text"]}')
-
-

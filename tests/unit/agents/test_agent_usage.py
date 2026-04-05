@@ -7,7 +7,7 @@ from langchain_core.messages import AIMessage
 from langchain_core.tools import tool
 from pydantic import BaseModel, Field
 
-from src.backend.ai.llm.chat_models.llm_open_ai import get_llm_chat_open_ai
+from src.backend.ai.llm.chat_models.llm_open_ai import _get_llm_chat_open_ai
 from src.backend.ai.llm.llm_factory.llm_factory import SupportedLLMs
 from src.shared.consts import const_config
 from src.shared.utils.utils import Utility
@@ -88,12 +88,12 @@ def test_agent_call_using_get_llm_chat_open_ai():
 
     }
 
-    llm = get_llm_chat_open_ai("gpt-5.4-mini", base_url=os.getenv(const_config.ENV.AZURE.AZURE_OPENAI_ENDPOINT),
-                               api_key=Utility.get_encrypted_key(
-                                   os.getenv(const_config.ENV.AZURE.AZURE_OPENAI_API_KEY)),
-                               **options
+    llm = _get_llm_chat_open_ai("gpt-5.4-mini", base_url=os.getenv(const_config.ENV.AZURE.AZURE_OPENAI_ENDPOINT),
+                                api_key=Utility.get_encrypted_key(
+                                    os.getenv(const_config.ENV.AZURE.AZURE_OPENAI_API_KEY)),
+                                **options
 
-                               )
+                                )
     agent = create_agent(
         model=llm,
         tools=[get_weather, multiply, divide],

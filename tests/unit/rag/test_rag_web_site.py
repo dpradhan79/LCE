@@ -111,7 +111,7 @@ def test_rag_web_site_in_chrome_db():
 
     # Retrieval
     query = "What are Parameters to models"
-    query_response = retriever.con.invoke(query)
+    query_response = retriever.invoke(query)
     assert query_response is not None
     for q_r in query_response:
         assert q_r.page_content is not None

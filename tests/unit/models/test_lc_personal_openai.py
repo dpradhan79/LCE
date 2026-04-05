@@ -1,7 +1,7 @@
 import pytest
 from langchain_core.prompts import ChatPromptTemplate, SystemMessagePromptTemplate, HumanMessagePromptTemplate
 
-from src.backend.ai.llm.chat_models.llm_open_ai import get_llm_chat_open_ai
+from src.backend.ai.llm.chat_models.llm_open_ai import _get_llm_chat_open_ai
 
 
 @pytest.mark.llm_open_ai_models
@@ -44,7 +44,7 @@ from src.backend.ai.llm.chat_models.llm_open_ai import get_llm_chat_open_ai
 def test_chat_model_open_ai(skip, model, options, request):
     if skip:
         pytest.skip(reason="Skipping Test As Marked")
-    llm = get_llm_chat_open_ai(model, **options)
+    llm = _get_llm_chat_open_ai(model, **options)
     assert llm is not None
     messages = ChatPromptTemplate.from_messages(
         [SystemMessagePromptTemplate.from_template(template="You Are Helpful Assistant",

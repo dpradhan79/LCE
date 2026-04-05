@@ -2,7 +2,7 @@ import pytest
 from langchain_core.language_models import BaseChatModel
 from langchain_core.prompts import ChatPromptTemplate, SystemMessagePromptTemplate, HumanMessagePromptTemplate
 
-from src.backend.ai.llm.chat_models.llm_ollama import get_llm_chat_ollama
+from src.backend.ai.llm.chat_models.llm_ollama import _get_llm_chat_ollama
 
 
 async def invoke_llm_with_timeout(llm: BaseChatModel, message, timeout: int = 30):
@@ -26,7 +26,7 @@ async def invoke_llm_with_timeout(llm: BaseChatModel, message, timeout: int = 30
 def test_chat_model_ollama(model, reasoning, request):
     kwargs = {"reasoning": reasoning, "temperature": 0.1, "timeout": 30}
     if model != "qwen3.5:0.8b":
-        llm = get_llm_chat_ollama(model, **kwargs)
+        llm = _get_llm_chat_ollama(model, **kwargs)
         assert llm is not None
         messages = ChatPromptTemplate.from_messages(
             [SystemMessagePromptTemplate.from_template(template="You Are Helpful Assistant",
@@ -38,7 +38,7 @@ def test_chat_model_ollama(model, reasoning, request):
         assert (len(response.content) > 0) is True, f'Ollama Model - {model} Does Not Respond'
         print(f'\n test - {request.node.name} \n Response = \n {response.content}')
     elif model == "qwen3.5:0.8b":
-        llm = get_llm_chat_ollama(model, **kwargs)
+        llm = _get_llm_chat_ollama(model, **kwargs)
         messages = ChatPromptTemplate.from_messages(
             [SystemMessagePromptTemplate.from_template(template="You Are Helpful Assistant",
                                                        template_format="f-string"),
