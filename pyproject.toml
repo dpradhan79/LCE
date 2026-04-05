@@ -7,6 +7,7 @@ requires-python = ">=3.12"
 dependencies = [
     "beautifulsoup4>=4.14.3",
     "faiss-cpu>=1.13.2",
+    "fastmcp>=3.2.0",
     "langchain>=1.2.12",
     "langchain-community>=0.4.1",
     "langchain-ollama>=1.0.1",
