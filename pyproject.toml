@@ -9,6 +9,7 @@ dependencies = [
     "langchain-community>=0.4.1",
     "langchain-ollama>=1.0.1",
     "langchain-openai>=1.1.11",
+    "pypdf>=6.9.2",
     "python-dotenv>=1.2.2",
     "tzdata>=2025.3",
 ]
@@ -34,7 +35,7 @@ requires = ["setuptools>=42", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
-where = ["."]
+where = ["src"]
 
 # -----------------------------------------------------------------------------
 # Pytest — single source of truth (pytest.ini deleted)
@@ -44,5 +45,7 @@ pythonpath = ["src"]
 python_files = ["test_*.py"]
 python_functions = ["test_*"]
 markers = [
-    "graph_crawl: marker for tests covering the full crawl-to-test-gen graph workflow",
+    "llm_ollama_models: a marker to run llm_ollama_models",
+    "llm_open_ai_models: a marker to run llm_open_ai_models",
+    "llm_platform_provider_open_ai: a marker to run llm_platform_provider_open_ai"
 ]
