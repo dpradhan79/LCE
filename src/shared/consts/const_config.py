@@ -30,11 +30,13 @@ class SYMBOLS:
     DELTA_SYMBOL = "△"
     RIGHT_ARROW = "➡️"
     Left_ARROW = "⬅️"
+    DEBUG = "🐛"
     INFO = "ℹ️"
     CORRECT = "✅"
     WRONG = "❌"
+    ERROR = "❌"
     WARN = "⚠️"
-    CRITICAL = "❌❌"
+    CRITICAL = "🔥"
 
 
 class ENV:

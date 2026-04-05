@@ -23,8 +23,26 @@ dev = [
     "pytest-html-reporter>=0.2.6",
 ]
 
-[tool.setuptools.packages.find]
-where = ["src"]          # tells setuptools packages live under src/
+#-----------------------------------------------------------------------------
+# Build system
+# Use "setuptools.build_meta" (classic backend) — works with all setuptools
+# versions. The "setuptools.backends.legacy:build" form requires setuptools 69+
+# and is NOT needed here.
+# -----------------------------------------------------------------------------
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
 
+[tool.setuptools.packages.find]
+where = ["."]
+
+# -----------------------------------------------------------------------------
+# Pytest — single source of truth (pytest.ini deleted)
+# -----------------------------------------------------------------------------
 [tool.pytest.ini_options]
-pythonpath = ["src"]     # lets pytest resolve imports from src/
+pythonpath = ["src"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+markers = [
+    "graph_crawl: marker for tests covering the full crawl-to-test-gen graph workflow",
+]
