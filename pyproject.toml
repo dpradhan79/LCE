@@ -24,13 +24,26 @@ dev = [
     "pytest-html-reporter>=0.2.6",
 ]
 
-[tool.setuptools.packages.find]
-where = ["src"]          # tells setuptools packages live under src/
+#-----------------------------------------------------------------------------
+# Build system
+# Use "setuptools.build_meta" (classic backend) — works with all setuptools
+# versions. The "setuptools.backends.legacy:build" form requires setuptools 69+
+# and is NOT needed here.
+# -----------------------------------------------------------------------------
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
 
+[tool.setuptools.packages.find]
+where = ["src"]
+
+# -----------------------------------------------------------------------------
+# Pytest — single source of truth (pytest.ini deleted)
+# -----------------------------------------------------------------------------
 [tool.pytest.ini_options]
-pythonpath = ["src"]     # lets pytest resolve imports from src/
-python_files      = ["test_*.py"]
-python_functions  = ["test_*"]
+pythonpath = ["src"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
 markers = [
     "llm_ollama_models: a marker to run llm_ollama_models",
     "llm_open_ai_models: a marker to run llm_open_ai_models",
