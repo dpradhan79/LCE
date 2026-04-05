@@ -29,7 +29,7 @@ from src.backend.ai.llm.chat_models.llm_open_ai import get_llm_chat_open_ai
                               }
                               ),
                              (
-                                     False,
+                                     True,
                                      "gpt-5.4-nano",
                                      {
                                          "use_responses_api": True,
